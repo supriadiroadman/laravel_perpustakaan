@@ -25,7 +25,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        //
+        return view('pegawai.tambah');
     }
 
     /**
@@ -36,7 +36,10 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $data = new Pegawai();
+        // $data->create($request->all());
+
+        Pegawai::create($request->all());
     }
 
     /**
