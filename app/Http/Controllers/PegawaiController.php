@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pegawai;
 use Illuminate\Http\Request;
+use Validator;
 
 class PegawaiController extends Controller
 {
@@ -36,12 +37,27 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
+        // $validator = Validator::make($request->all(), [
+        //     'id_pegawai' => 'required',
+        //     'nama' => 'required',
+        //     'jenis_kelamin' => 'required',
+        //     'no_hp' => 'required',
+        //     'alamat' => 'required',
+        // ])->validate();
+        $request->validate([
+            'id_pegawai'    => 'required|max:20',
+            'nama'          => 'required',
+            'jenis_kelamin' => 'required',
+            'no_hp'         => 'required',
+            'alamat'        => 'required',
+        ]);
+
         // $data = new Pegawai();
         // $data->create($request->all());
-
         Pegawai::create($request->all());
         return redirect()->route('pegawai.index')->with('status', 'Data berhasil ditambah');
     }
+
 
     /**
      * Display the specified resource.
@@ -75,6 +91,14 @@ class PegawaiController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'id_pegawai'    => 'required|max:20',
+            'nama'          => 'required',
+            'jenis_kelamin' => 'required',
+            'no_hp'         => 'required',
+            'alamat'        => 'required',
+        ]);
+
         // var_dump($_POST);
         $data = Pegawai::findOrFail($id);
         $data->update($request->all());

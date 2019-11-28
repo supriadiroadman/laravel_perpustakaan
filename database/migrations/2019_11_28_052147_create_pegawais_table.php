@@ -15,11 +15,11 @@ class CreatePegawaisTable extends Migration
     {
         Schema::create('pegawais', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('id_pegawai', 100)->nullable();
-            $table->string('nama', 100)->nullable();
-            $table->enum('jenis_kelamin', ['Pria', 'Wanita'])->nullable();
-            $table->string('no_hp', 100)->nullable();
-            $table->string('alamat', 100)->nullable();
+            $table->string('id_pegawai', 100);
+            $table->string('nama', 100);
+            $table->enum('jenis_kelamin', ['Pria', 'Wanita']);
+            $table->string('no_hp', 100);
+            $table->string('alamat', 100);
             $table->timestamps();
         });
     }
