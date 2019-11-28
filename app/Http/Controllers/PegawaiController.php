@@ -40,6 +40,7 @@ class PegawaiController extends Controller
         // $data->create($request->all());
 
         Pegawai::create($request->all());
+        return redirect()->route('pegawai.index')->with('status', 'Data berhasil ditambah');
     }
 
     /**
@@ -61,7 +62,8 @@ class PegawaiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Pegawai::findOrFail($id);
+        return view('pegawai.edit', compact('data'));
     }
 
     /**
@@ -73,7 +75,10 @@ class PegawaiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // var_dump($_POST);
+        $data = Pegawai::findOrFail($id);
+        $data->update($request->all());
+        return redirect()->route('pegawai.index')->with('status', 'Data berhasil diubah');
     }
 
     /**
@@ -84,6 +89,8 @@ class PegawaiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Pegawai::findOrFail($id);
+        $data->delete();
+        return redirect()->route('pegawai.index')->with('status', 'Data berhasil dihapus');
     }
 }
